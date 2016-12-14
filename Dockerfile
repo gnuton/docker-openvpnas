@@ -12,12 +12,12 @@ RUN apt-get update && apt-get install -y curl wget iptables net-tools  && \
     echo "openvpn:password1234" | chpasswd && \
     rm -rf openvpn-as.deb
 
-COPY build/entrypoint.sh /
-RUN chmod +x /entrypoint.sh
+COPY build/run.sh /
+RUN chmod +x /run.sh
 
 EXPOSE 443/tcp 1194/udp 943/tcp
 
 VOLUME ["/usr/local/openvpn_as"]
 
-CMD ["/entrypoint.sh"]
+CMD ["/run.sh"]
 
