@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y curl wget iptables net-tools  && \
     echo "openvpn:password1234" | chpasswd && \
     rm -rf openvpn-as.deb
 
-COPY build/run.sh /
+COPY rel/run.sh /
 RUN chmod +x /run.sh
 
 EXPOSE 443/tcp 1194/udp 943/tcp
