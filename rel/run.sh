@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "openvpn:$PSWD" | chpasswd
 
 # remove twisted pid
 if ps -p $(cat twistd.pid) > /dev/null 2>&1

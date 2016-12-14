@@ -1,18 +1,20 @@
 #Openvpn Access Server
-scottyc/openvpn
+gnuton/openvpnas
 
 A Openvpn Access Server running in a Ubuntu 16.04 docker container.
 
-[`scottyc/openvpn`](https://registry.hub.docker.com/u/scottyc/openvpn/)
+[`gnuton/openvpnas`](https://registry.hub.docker.com/u/gnuton/openvpn/)
 
 ##Running
-
-Create a Dockerfile in your project ```FROM``` scottyc/openvpn or
+Get the Makefile from this repo, export PSWD=mypassword and run 'make run'.
+In case you want to start the container at boot time run 'make run-atboot'
 
 ##Building
 ```
-docker run -d -p 443:443 -p 943:943 -p 1194:1194/udp --privileged=true --name openvpn scottyc/openvpn
+Clone this repo and run 'make'
 
 ```
-Then login to ```https://dockerhostip:943/admin```
-Username is openvpn password is password1234 (you might want to change that !!!)
+
+##Usage
+Point your broswer to ```https://dockerhostip:943/admin```
+Username is openvpn password is the one you set
