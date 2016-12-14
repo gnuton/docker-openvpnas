@@ -1,5 +1,7 @@
 FROM ubuntu:16.04
-MAINTAINER Antonio Aloisio "https://github.com/gnuton/docker-openvpn"
+MAINTAINER Scott Coulton "https://github.com/scotty-c/docker-openvpn"
+MAINTAINER Antonio Aloisio "gnuton@gnuton.org"
+
 USER root
 WORKDIR / 
 
