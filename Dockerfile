@@ -3,10 +3,9 @@ MAINTAINER Antonio Aloisio "https://github.com/gnuton/docker-openvpn"
 USER root
 WORKDIR / 
 
-RUN apt-get update && apt-get install -y curl wget iptables net-tools  && \
-    wget http://swupdate.openvpn.org/as/openvpn-as-2.1.2-Ubuntu16.amd_64.deb -O openvpn-as.deb && \ 
-    dpkg -i openvpn-as.deb && \
-    rm -rf openvpn-as.deb
+COPY rel/update.sh /
+RUN chmod +x /update.sh
+RUN apt-get update && apt-get install -y curl wget iptables net-tools  && ./update.sh
 
 COPY rel/run.sh /
 RUN chmod +x /run.sh

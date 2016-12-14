@@ -1,5 +1,5 @@
 NAME = gnuton/openvpnas
-VERSION = 0.1
+VERSION = 0.2
 PORTS = -p 443:443 -p 943:943 -p 1194:1194/udp
 
 
