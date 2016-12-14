@@ -3,7 +3,7 @@ set -e
 
 URL=https://openvpn.net/index.php/access-server/download-openvpn-as-sw/113.html?osfamily=Ubuntu
 LATEST_DEB=$(curl ${URL} -s | grep -oP "http.*Ubuntu16.amd_64.deb")
-LATEST_VER=$(echo $LATEST_DEB | grep -Po "(?<=openvpn-as-)2.1.4b-Ubuntu1" )
+LATEST_VER=$(echo $LATEST_DEB | grep -Po "(?<=openvpn-as-)2.1.4b-Ubuntu16" )
 CURRENT_VER=$(dpkg -s openvpn-as | grep -Po '(?<=Version: ).*')
 
 
@@ -32,9 +32,9 @@ echo "Current openvpn-as installed ver: ${CURRENT_VER}"
 if [ "$LATEST_VER" == "$CURRENT_VER" ]; then
   echo "Update is not required"
   exit 0
+else
+  echo "Updating openvpn-as to ${LATEST_VER}"
+  wget $LATEST_DEB -O openvpn-as.deb
+  stop_openvpnas && dpkg -i openvpn-as.deb  && rm -rf openvpn-as.deb
 fi
-echo "Updating openvpn-as to ${LATEST_VER}"
-wget $LATEST_DEB -O openvpn-as.deb
-stop_openvpnas
-dpkg -i openvpn-as.deb
-rm -rf openvpn-as.deb
+
