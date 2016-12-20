@@ -1,7 +1,7 @@
 #Openvpn Access Server
 Pull it from: [`gnuton/openvpnas`](https://hub.docker.com/r/gnuton/openvpnas/)!!
 
-A Openvpn Access Server running in a Ubuntu 16.04 docker container.
+Openvpn Access Server canned in an Ubuntu 16.04 container.
 Features:
 * Updated OpenVPN AS deb at each build
 * Valid HTTPs certificates using letsencrypt
