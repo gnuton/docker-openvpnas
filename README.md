@@ -29,8 +29,10 @@ make status
 
 ##Usage
 Point your broswer to ```https://vpn.yourdomain.org```
-Username is openvpn password is the one you set
-You can add more users from the webui.
+Username is openvpn password is the one you set.
+
+You can add more users from the webui if you like.
+
 Clients can fetch configuration from the https server too.
 
 ##Stopping and cleaning 
