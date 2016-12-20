@@ -2,7 +2,10 @@
 gnuton/openvpnas
 
 A Openvpn Access Server running in a Ubuntu 16.04 docker container.
-The HTTPs connection make use of valid HTTPS certificates released by letsencrypt.
+Features:
+* Updated OpenVPN AS deb at each build
+* Valid HTTPs certificates using letsencrypt
+* Makefile simplify docker commands for running, building, get into the container and cleaning. 
 
 [`gnuton/openvpnas`](https://registry.hub.docker.com/u/gnuton/openvpn/)
 
@@ -19,3 +22,7 @@ make attach
 ##Usage
 Point your broswer to ```https://dockerhostip:943/admin```
 Username is openvpn password is the one you set
+
+##Reference
+* https://docs.openvpn.net/docs/access-server/openvpn-access-server-command-line-tools.html#access-server-daemon-status-and-control
+

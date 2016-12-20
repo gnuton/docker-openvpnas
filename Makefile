@@ -1,5 +1,5 @@
 NAME = gnuton/openvpnas
-VERSION = 0.3
+VERSION = 0.4
 PORTS = -p 443:443 -p 943:943 -p 1194:1194/udp
 
 
@@ -11,17 +11,28 @@ build:
 attach:
 	docker exec -it $$(docker ps -aqf "name=openvpnas") bash
 
-test:
-	echo "Please write a test"
+logs:
+	docker logs $$(docker ps -aqf "name=openvpnas")
+
+stop: kill rm
+
+kill: 
+	docker kill $$(docker ps -aqf "name=openvpnas")
+
+rm:
+	docker rm $$(docker ps -aqf "name=openvpnas")
+
+status:
+	docker exec -it $$(docker ps -aqf "name=openvpnas") /usr/local/openvpn_as/scripts/sacli status
 
 tag_latest:
 	docker tag -f $(NAME):$(VERSION) $(NAME):latest
 
 run: check-env
-	docker run -e "PSWD=$(PSWD)" -e "EMAIL=$(EMAIL)" -e "DOMAIN=$(DOMAIN)" -d $(PORTS) --privileged=true --name openvpnas $(NAME):$(VERSION)
+	docker run -h $(DOMAIN) -e "PSWD=$(PSWD)" -e "EMAIL=$(EMAIL)" -e "DOMAIN=$(DOMAIN)" -d $(PORTS) --privileged=true --name openvpnas $(NAME):$(VERSION)
 
 run-atboot: check-env
-	docker run -e "PSWD=$(PSWD)" --restart=always -d $(PORTS) --privileged=true --name openvpnas $(NAME):$(VERSION)
+	docker run -h $(DOMAIN) -e "PSWD=$(PSWD)" --restart=always -d $(PORTS) --privileged=true --name openvpnas $(NAME):$(VERSION)
 
 check-env: check-pswd check-email check-domain
 
