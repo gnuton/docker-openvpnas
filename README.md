@@ -1,5 +1,5 @@
 #Openvpn Access Server
-gnuton/openvpnas
+Pull it from: [`gnuton/openvpnas`](https://hub.docker.com/r/gnuton/openvpnas/)!!
 
 A Openvpn Access Server running in a Ubuntu 16.04 docker container.
 Features:
@@ -7,9 +7,6 @@ Features:
 * Valid HTTPs certificates using letsencrypt
 * Default setting use local users authentications. Users can be added through the web interface.
 * Makefile simplify docker commands for running, building, get into the container and cleaning. 
-
-
-[`gnuton/openvpnas`](https://registry.hub.docker.com/u/gnuton/openvpn/)
 
 ##How to run
 1. Download the  [`Makefile`](https://raw.githubusercontent.com/gnuton/docker-openvpnas/master/Makefile)
