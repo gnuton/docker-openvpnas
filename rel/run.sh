@@ -20,7 +20,7 @@ if [ -e "/var/run/openvpnas.pid" ]; then
 fi
 
 # Create base config for OpenVPN AS
-/usr/local/openvpn_as/bin/ovpn-init --host=$DOMAIN --local_auth --batch --force --no_start
+#/usr/local/openvpn_as/bin/ovpn-init --host=$DOMAIN --local_auth --batch --force --no_start
 
 # Get SSL certificates. You can request 5 certs in 7 days. If you exceed it openvpn as will fall back to self signed ones
 if [ ! -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem ]; then
