@@ -29,6 +29,13 @@ make run-atboot
 make status
 ```
 
+
+##Usage
+Point your broswer to ```https://vpn.yourdomain.org```
+Username is openvpn password is the one you set
+You can add more users from the webui.
+Clients can fetch configuration from the https server too.
+
 ##Stopping and cleaning 
 You can kill the container and remove its content with a make stop
 ```
@@ -50,10 +57,6 @@ Clone this repo and run 'make'
 
 ##Getting into a running container
 make attach
-
-##Usage
-Point your broswer to ```https://dockerhostip:943/admin```
-Username is openvpn password is the one you set
 
 ##Reference
 * https://docs.openvpn.net/docs/access-server/openvpn-access-server-command-line-tools.html#access-server-daemon-status-and-control
