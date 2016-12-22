@@ -25,7 +25,7 @@ fi
 # Get SSL certificates. You can request 5 certs in 7 days. If you exceed it openvpn as will fall back to self signed ones
 if [ ! -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem ]; then
   echo "No certificates found. Fetching..."
-  letsencrypt certonly -c /etc/letsencrypt/vpn-cert.ini --text
+  letsencrypt certonly -c /etc/letsencrypt/vpn-cert.ini --renew-by-default --text
 fi
 if [ -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem ]; then
   echo "Setting up SSL certificates.."
