@@ -42,9 +42,9 @@ If you delete those volumes your clients need to re-import the configurations an
 "docker volume ls".
 Note that as for now letsencrypt provides max 5 certificates requests in a week. For this reason storing the certificates is needed and will allow you to restart the container multiple times.
 The cofiguration OpenVPN AS configuration is stored in /var/lib/docker/volumes/ovpnas/_data/etc/ of the host in case you wanna change it manually.
-```
-make stop
-```
+
+##Stopping 
+"make stop" will send a SIGTERM to the OpenVPN in docker and will wait for it to terminate. When terminated the container will be removed and the volumes will be de-attached and preserved for the next run.
 
 ##Debugging
 You can get into a running container by using
