@@ -59,9 +59,6 @@ make logs
 ##Building
 Clone this repo and run 'make'
 
-##Getting into a running container
-make attach
-
 ##Reference
 * https://docs.openvpn.net/docs/access-server/openvpn-access-server-command-line-tools.html#access-server-daemon-status-and-control
 
