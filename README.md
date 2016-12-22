@@ -37,12 +37,13 @@ make status
 Point your broswer to ```https://vpn.yourdomain.org```
 Enter your credential (username: openvpn, password: the one you chose in $PSWD)
 Go to Configuration > Server Network Settings > Enter your Hostname or IP Address
-You can add new change the authentication method (Local/PAM/Radius).
-By default local DB is used. You can add new users through the web interface.
+
+You can select the authentication method (Local/PAM/Radius). PAM is the default one.
+You can switch to local and add new users through the web interface if you like it.
 
 ##Usage
-OpenVPN AS exposes configuration which can be automatically imported by openvpn clients
-through it server at https://vpn.yourdomain.org
+OpenVPN AS exposes configuration which can be automatically imported by OpenVPN clients
+through the server at https://vpn.yourdomain.org
 
 ##Persistent storage
 OpenVPN AS and its configuration get stored in a volume called ovpnas. The SSL certificates go in the volume sslcerts.
