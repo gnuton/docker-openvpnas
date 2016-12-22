@@ -1,27 +1,21 @@
 NAME = gnuton/openvpnas
-VERSION = 0.7
+VERSION = 0.9
 PORTS = -p 443:443 -p 943:943 -p 1194:1194/udp
 OVPN_PATH = /usr/local/openvpn_as
 CERTS_PATH = /etc/letsencrypt
 VOL_OVPN = ovpnas
 VOL_CERTS = sslcerts
 
-.PHONY: all build tag_latest
-
+.PHONY: all build
 
 build:
 	docker build -t $(NAME):$(VERSION) . 
-
+	docker tag $(NAME):$(VERSION) $(NAME):latest
 attach:
 	docker exec -it $$(docker ps -aqf "name=openvpnas") bash
 
 logs:
 	docker logs $$(docker ps -aqf "name=openvpnas")
-
-clean: stop rm list-volumes
-
-kill: 
-	docker kill $$(docker ps -aqf "name=openvpnas")
 
 rm:
 	docker rm $$(docker ps -aqf "name=openvpnas")
@@ -30,9 +24,9 @@ rm-orphan-volumes:
 	docker volume rm `docker volume ls -q -f dangling=true`
 
 start: run
-	#docker start $$(docker ps -aqf "name=openvpnas")
+stop: stop-instance rm list-volumes
 
-stop:
+stop-instance:
 	docker stop $$(docker ps -aqf "name=openvpnas")
 
 list-volumes:
@@ -41,14 +35,15 @@ list-volumes:
 status:
 	docker exec -it $$(docker ps -aqf "name=openvpnas") /usr/local/openvpn_as/scripts/sacli status
 
-tag_latest:
-	docker tag -f $(NAME):$(VERSION) $(NAME):latest
-
 run: check-env
-	docker run -v $(VOL_OVPN):$(OVPN_PATH) -v $(VOL_CERTS):$(CERTS_PATH) -h $(DOMAIN) -e "PSWD=$(PSWD)" -e "EMAIL=$(EMAIL)" -e "DOMAIN=$(DOMAIN)" -d $(PORTS) --privileged=true --name openvpnas $(NAME):$(VERSION)
-
-run-atboot: check-env
-	docker run -h $(DOMAIN) -e "PSWD=$(PSWD)" -e "EMAIL=$(EMAIL)" -e "DOMAIN=$(DOMAIN)" -d $(PORTS) --privileged=true --restart=always --name openvpnas $(NAME):$(VERSION)
+	docker run -v $(VOL_OVPN):$(OVPN_PATH) -v $(VOL_CERTS):$(CERTS_PATH) \
+                   -h $(DOMAIN) \
+                   -e "PSWD=$(PSWD)" -e "EMAIL=$(EMAIL)" -e "DOMAIN=$(DOMAIN)" \
+                   -d $(PORTS) \
+                   --privileged=true \
+                   --name openvpnas \
+		   --restart=always \
+                   $(NAME):latest
 
 check-env: check-pswd check-email check-domain
 
