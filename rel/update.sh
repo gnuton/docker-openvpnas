@@ -1,14 +1,19 @@
 #!/bin/bash
 set -e
+echo "Starting updating script..."
 
 URL=https://openvpn.net/index.php/access-server/download-openvpn-as-sw/113.html?osfamily=Ubuntu
 LATEST_DEB=$(curl ${URL} -s | grep -oP "http.*Ubuntu16.amd_64.deb")
-LATEST_VER=$(echo $LATEST_DEB | grep -Po "(?<=openvpn-as-)2.1.4b-Ubuntu16" )
+LATEST_VER=$(echo $LATEST_DEB | grep -Po "(?<=openvpn-as-)[0-9.]*-Ubuntu16" )
+
+echo "Latest DEB $LATEST_DEB ver:$LATEST_VER"
+
 if [ ! -f /tmp/foo.txt ]; then
     echo "OpenVPN Access Point is not installed"
     CURRENT_VER=0
 else
     CURRENT_VER=$(dpkg -s openvpn-as | grep -Po '(?<=Version: ).*')   
+    echo "OpenVPN installed $CURRENT_VER"
 fi
 
 
