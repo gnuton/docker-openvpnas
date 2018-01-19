@@ -14,7 +14,7 @@ RUN chmod +x /run.sh
 
 COPY rel/vpn-cert.ini /etc/letsencrypt/vpn-cert.ini
 
-EXPOSE 443/tcp 1194/udp 943/tcp
+EXPOSE 80/tcp 443/tcp 1194/udp 943/tcp
 
 VOLUME ["/usr/local/openvpn_as", "/etc/letsencrypt"]
 

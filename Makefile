@@ -1,10 +1,10 @@
 NAME = gnuton/openvpnas
-VERSION = 0.9
-PORTS = -p 443:443 -p 943:943 -p 1194:1194/udp
+VERSION = 0.14
+PORTS = -p 80:80 -p 443:443 -p 943:943 -p 1194:1194/udp
 OVPN_PATH = /usr/local/openvpn_as
 CERTS_PATH = /etc/letsencrypt
-VOL_OVPN = ovpnas
-VOL_CERTS = sslcerts
+VOL_OVPN = ovpnas2
+VOL_CERTS = sslcerts2
 
 .PHONY: all build
 

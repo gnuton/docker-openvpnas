@@ -23,6 +23,7 @@ fi
 if ps -p $(cat twistd.pid) > /dev/null 2>&1
 then
     kill $(cat twistd.pid)
+    rm -rf twistd.pid
     /usr/local/openvpn_as/scripts/openvpnas -n
     exit 0
 else
