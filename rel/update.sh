@@ -2,10 +2,10 @@
 set -e
 echo "Starting updating script..."
 
-URL=https://openvpn.net/index.php/access-server/download-openvpn-as-sw/113.html?osfamily=Ubuntu
+URL=https://openvpn.net/software-packages/
 LATEST_DEB=$(curl ${URL} -s | grep -oP "http.*Ubuntu16.amd_64.deb")
 LATEST_VER=$(echo $LATEST_DEB | grep -Po "(?<=openvpn-as-)[0-9.]*-Ubuntu16" )
-
+exit 0
 echo "Latest DEB $LATEST_DEB ver:$LATEST_VER"
 
 if [ ! -f /tmp/foo.txt ]; then
@@ -24,10 +24,12 @@ stop_openvpnas ()
   if ps -p $(cat twistd.pid) > /dev/null 2>&1
   then
     kill $(cat twistd.pid)
+    rm /twistd.pid
     /usr/local/openvpn_as/scripts/openvpnas -n
     exit 0
   else
-    echo "no twistd.pid found"   
+    echo "no process running using twistd file"
+    rm /twistd.pid   
   fi
 }
 
