@@ -27,7 +27,9 @@ then
     /usr/local/openvpn_as/scripts/openvpnas -n
     exit 0
 else
-    echo "no twistd.pid found"   
+    echo "no twistd.pid found"
+    # the pid can be there if the container has not been gracefully shutdown
+    rm -rf twistd.pid
 fi
 
 # remove pid file if it exists
