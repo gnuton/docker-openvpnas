@@ -6,11 +6,13 @@ USER root
 WORKDIR / 
 
 COPY rel/update.sh /
-COPY rel/run.sh /
-COPY rel/vpn-cert.ini /etc/letsencrypt/vpn-cert.ini
-COPY rel/vpn-cert.ini /etc/letsencrypt/vpn-cert.ini
+RUN chmod +x /update.sh
+RUN apt-get update && apt-get install -y curl wget iptables net-tools letsencrypt && ./update.sh
 
-RUN chmod +x /update.sh && apt-get update && apt-get install -y curl wget iptables net-tools letsencrypt && ./update.sh && chmod +x /run.sh
+COPY rel/run.sh /
+RUN chmod +x /run.sh
+
+COPY rel/vpn-cert.ini /etc/letsencrypt/vpn-cert.ini
 
 EXPOSE 80/tcp 443/tcp 1194/udp 943/tcp
 
